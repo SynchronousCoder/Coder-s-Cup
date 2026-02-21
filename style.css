@@ -1,0 +1,888 @@
+@font-face {
+  font-family: font1;
+  src: url(./font/Inter-VariableFont_opsz\,wght.ttf);
+}
+@font-face {
+  font-family: newsreader;
+  src: url(./font/Newsreader-VariableFont_opsz\,wght.ttf);
+}
+/* --------------------------------------------------
+   Base Reset
+   Keeps layout predictable across browsers
+-------------------------------------------------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  font-family: font1;
+}
+
+/* --------------------------------------------------
+   Global Section Layout
+   Each section stays above galaxy canvas
+-------------------------------------------------- */
+
+.page-1,
+.page-2,
+.page-3,
+.page-4,
+.page-5 {
+  height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  z-index: 2;
+}
+
+/* --------------------------------------------------
+   Global Galaxy Canvas
+   Fixed background layer
+-------------------------------------------------- */
+
+.galaxy-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------
+   Page 1 – Hero Wrapper
+-------------------------------------------------- */
+
+.page-1 {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+
+/* Hero container (glass card) */
+.hero {
+  position: relative;
+  width: min(1317px, 95%);
+  height: 92vh;
+  border-radius: 24px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Hero background image */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 24px;
+  z-index: 0;
+}
+
+/* Soft red atmospheric glow */
+.page-1::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  background:
+    radial-gradient(circle at 0% 50%, rgba(120, 0, 0, 0.45), transparent 40%),
+    radial-gradient(circle at 100% 50%, rgba(120, 0, 0, 0.45), transparent 40%),
+    radial-gradient(circle at 50% 0%, rgba(120, 0, 0, 0.35), transparent 40%),
+    radial-gradient(circle at 50% 100%, rgba(120, 0, 0, 0.35), transparent 40%);
+}
+
+/* --------------------------------------------------
+   Hero Text Content
+-------------------------------------------------- */
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-family: newsreader;
+  font-size: clamp(3rem, 6vw, 6rem);
+  margin: 0.5rem 0;
+  font-weight: 600;
+  text-shadow:
+    0 0 12px rgba(255, 255, 255, 0.35),
+    0 0 40px rgba(255, 255, 255, 0.15);
+}
+
+.hero-content p {
+  font-size: 1rem;
+  font-weight: 200;
+  letter-spacing: 1px;
+  opacity: 0.7;
+}
+
+/* --------------------------------------------------
+   Navigation Bar
+-------------------------------------------------- */
+
+.navbar {
+  position: fixed;
+  top: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1180px, calc(100% - 120px));
+  height: 50px;
+  padding: 0 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-radius: 21px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.6);
+
+  z-index: 5;
+}
+
+.nav-left,
+.nav-center {
+  font-family: newsreader;
+  font-style: italic;
+}
+
+.nav-left {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #f2f2f2;
+  letter-spacing: 0.6px;
+  opacity: 0.7;
+}
+
+.nav-center {
+  font-size: 1.2rem;
+  font-weight: 200;
+  color: #d6d6d6;
+  opacity: 0.7;
+}
+
+/* CTA button */
+.nav-btn {
+  padding: 8px 22px;
+  border-radius: 9px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+
+  background: linear-gradient(#f5f5f5, #e6e6e6);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 3px 8px rgba(0, 0, 0, 0.35);
+
+  transition: all 0.25s ease;
+}
+
+.nav-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+/* --------------------------------------------------
+   Hero Bottom Meta
+-------------------------------------------------- */
+
+.last-content {
+  position: absolute;
+  bottom: 45px;
+  width: min(1317px, 95%);
+  padding: 0 2rem;
+
+  display: flex;
+  justify-content: space-between;
+
+  color: #cdcdcd;
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  z-index: 3;
+  opacity: 0.7;
+}
+
+/* --------------------------------------------------
+   Page 2 – Statement Section
+-------------------------------------------------- */
+
+.page-2 {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(2rem, 5vw, 6rem);
+  background: transparent;
+}
+
+.page-2 h1 {
+  font-family: newsreader;
+  font-size: clamp(3rem, 7vw, 4rem);
+  font-weight: 350;
+  text-align: center;
+  max-width: 1100px;
+  line-height: 1.4;
+  color: #323232;
+}
+
+/* --------------------------------------------------
+   Page 3 – Card Section
+-------------------------------------------------- */
+
+.sticky {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page3-heading {
+  position: absolute;
+  z-index: -1;
+}
+
+.page3-heading h1 {
+  font-size: 2rem;
+  color: #e8e8e8;
+
+  text-shadow:
+    0 0 6px rgba(255, 255, 255, 0.45),
+    0 0 14px rgba(255, 255, 255, 0.28),
+    0 0 24px rgba(255, 255, 255, 0.28);
+}
+
+.banner {
+  width: 80%;
+  aspect-ratio: 15 / 8;
+  display: flex;
+  perspective: 1200px;
+  transform: translateY(40px);
+  position: absolute;
+}
+
+/* Card container */
+.card {
+  flex: 1;
+  position: relative;
+  aspect-ratio: 5 / 8;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  overflow: hidden;
+}
+
+.card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Back side */
+.card-back {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem 1.25rem;
+
+  background: #3a3a3a;
+  color: #fff;
+  transform: rotateY(180deg);
+}
+
+/* Hover lighting overlay */
+.card-back::after {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.45) 0%,
+      rgba(0, 0, 0, 0.15) 35%,
+      rgba(0, 0, 0, 0) 70%
+    ),
+    radial-gradient(
+      circle at var(--mx, 50%) var(--my, 50%),
+      rgba(255, 255, 255, 0.18),
+      rgba(255, 255, 255, 0.08) 30%,
+      transparent 60%
+    );
+}
+
+.card-back:hover::after {
+  opacity: 1;
+}
+
+/* Card typography */
+.card-index {
+  font-size: 1.2rem;
+  opacity: 0.6;
+}
+
+.card-back h2 {
+  font-size: 3rem;
+  font-weight: 600;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.card-back-text {
+  font-size: 1.5rem;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+/* Rounded edges */
+#card-1 .card-front,
+#card-1 .card-back {
+  border-radius: 20px 0 0 20px;
+}
+
+#card-3 .card-front,
+#card-3 .card-back {
+  border-radius: 0 20px 20px 0;
+}
+
+/* Card color themes */
+
+#card-1 .card-back {
+  background: linear-gradient(145deg, #b3b3b3 0%, #9a9a9a 45%, #838383 100%);
+  color: #1b1b1b;
+}
+
+#card-2 .card-back {
+  background: linear-gradient(
+    155deg,
+    #ee3a24 0%,
+    #c92b1a 35%,
+    #8a140e 65%,
+    #4b0a08 100%
+  );
+  color: #dcdcdc;
+}
+
+#card-3 .card-back {
+  background: linear-gradient(
+    160deg,
+    #1a1a1a 0%,
+    #171717 40%,
+    #141414 70%,
+    #131313 100%
+  );
+  color: #b8b5af;
+}
+
+/* ==============================
+   HEADER
+================================ */
+
+.page4-header {
+  margin-top: 5rem;
+  height: 10vh;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: white;
+  margin-bottom: 5rem;
+}
+
+.page4-header h1 {
+  font-family: newsreader;
+  font-size: clamp(2.5rem, 4.2vw, 4rem);
+  font-weight: 500;
+}
+
+.page4-header p {
+  margin-top: 1.1rem;
+  opacity: 0.5;
+}
+/* ==============================
+   PAGE 4
+================================ */
+
+.page-4 {
+  min-height: 120vh;
+  padding: 0rem;
+  color: #fff;
+  background-color: transparent;
+}
+
+/* ==============================
+   FLEX CONTAINER (HORIZONTAL)
+================================ */
+
+.vertical-panels {
+  height: 100%;
+  width: 100%;
+  display: flex; /* HORIZONTAL */
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ==============================
+   ROW = PANEL
+================================ */
+
+.row {
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  background: #111;
+  border-radius: 15px;
+
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* HOVER EXPANSION */
+.row:hover {
+  flex-grow: 4.5;
+  background: #181818;
+}
+
+/* ==============================
+   CONTENT STYLING
+================================ */
+
+.row-left span {
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+.row-left h2 {
+  margin-top: 0.5rem;
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+
+.row-center {
+  position: absolute;
+  font-size: 1rem;
+  opacity: 0.8;
+  margin-left: 30rem;
+  line-height: 1.25rem;
+}
+
+.row-box {
+  height: 130px;
+  width: 200px;
+  border-radius: 16px;
+}
+
+/* Box Colors */
+
+.purple {
+  background: #6000a1;
+}
+.cyan {
+  background: #2bb9b3;
+}
+.pink {
+  background: #c41467;
+}
+.yellow {
+  background: #c9b11f;
+}
+
+/* ==================================================
+   PAGE 5 – FINAL SECTION
+================================================== */
+
+.page-5 {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  position: relative;
+}
+
+/* Outer red glow (same style as page-1) */
+.page-5::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  background:
+    radial-gradient(circle at 0% 50%, rgba(120, 0, 0, 0.45), transparent 40%),
+    radial-gradient(circle at 100% 50%, rgba(120, 0, 0, 0.45), transparent 40%),
+    radial-gradient(circle at 50% 0%, rgba(120, 0, 0, 0.35), transparent 40%),
+    radial-gradient(circle at 50% 100%, rgba(120, 0, 0, 0.35), transparent 40%);
+}
+
+/* Hero container */
+.final-hero {
+  position: relative;
+  width: min(1317px, 90%);
+  height: 85vh;
+  border-radius: 24px;
+  overflow: hidden;
+  isolation: isolate;
+}
+/* Background image */
+/* Background image */
+.final-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 24px;
+  z-index: 0;
+
+  /* Adjust brightness & contrast */
+  filter: brightness(0.8) contrast(1.2);
+}
+
+/* Noise overlay */
+.final-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%'><filter id='noise'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23noise)'/></svg>");
+  opacity: 0.9; /* subtle noise */
+  pointer-events: none; /* don’t block clicks */
+  z-index: 10;
+}
+
+/* Centered content */
+.final-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+}
+
+.final-content h1 {
+  font-family: newsreader;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.final-content p {
+  margin-top: 1rem;
+  opacity: 0.8;
+  font-size: 1rem;
+}
+
+/* Button */
+.final-btn {
+  margin-top: 2rem;
+  padding: 10px 28px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  background: linear-gradient(#f5f5f5, #e6e6e6);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 3px 8px rgba(0, 0, 0, 0.35);
+
+  transition: 0.25s ease;
+}
+
+.final-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+/* Footer */
+.final-footer {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  padding: 0 3rem;
+  display: flex;
+  justify-content: space-between;
+  color: #e0e0e0;
+  font-size: 0.9rem;
+  z-index: 2;
+}
+
+/* Divider Line */
+.final-divider {
+  position: absolute;
+  bottom: 65px;
+  left: 4%;
+  width: 93%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.25);
+  z-index: 2;
+}
+
+/* =====================================================
+   RESPONSIVE SYSTEM (FIXED CLEAN VERSION)
+===================================================== */
+
+/* ---------- TABLET (≤1024px) ---------- */
+@media (max-width: 1024px) {
+  .nav-center {
+    display: none;
+  }
+
+  .hero {
+    height: 88vh;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(3rem, 6vw, 4.5rem);
+  }
+
+  /* Page 3 stack */
+  .banner {
+    width: 90%;
+    flex-direction: column;
+    gap: 2rem;
+    position: relative;
+    transform: none !important;
+  }
+
+  .card {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+  }
+
+  .page3-heading {
+    position: relative;
+    margin-bottom: 2rem;
+    z-index: 1;
+  }
+
+  /* Page 4 mobile layout */
+  .vertical-panels {
+    flex-direction: column;
+  }
+
+  .row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .row-center {
+    position: relative;
+    margin-left: 0;
+  }
+
+  .row-box {
+    align-self: center;
+    height: 150px;
+    width: 150px;
+  }
+}
+
+/* ---------- MOBILE (≤768px) ---------- */
+@media (max-width: 768px) {
+  .navbar {
+    top: 20px;
+    width: 92%;
+    padding: 12px 20px;
+  }
+
+  .nav-left {
+    font-size: 1.2rem;
+  }
+
+  .nav-btn {
+    padding: 6px 14px;
+  }
+
+  .hero {
+    height: 85vh;
+  }
+  .hero-content {
+    scale: 100%;
+  }
+  .hero-content h1 {
+    scale: 135%;
+  }
+  .last-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+  }
+
+  .page-2 h1 {
+    scale: 110%;
+  }
+
+  /* page-3 */
+  /* Remove 100vh restriction so content can grow */
+  .sticky {
+    height: auto;
+    min-height: 100vh;
+    padding: 4rem 0;
+    align-items: flex-start;
+  }
+
+  /* Proper vertical layout */
+  #page-3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Heading visible above cards */
+  .page3-heading {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .page3-heading h1 {
+    font-size: 1.6rem;
+  }
+
+  /* Stack cards properly */
+  .banner {
+    position: relative !important;
+    transform: none !important;
+    width: 92%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    aspect-ratio: auto;
+    perspective: none;
+  }
+
+  .card {
+    width: 100%;
+    height: 420px;
+    flex: none;
+    transform: rotateY(180deg) !important; /* show back side */
+  }
+
+  .card-front,
+  .card-back {
+    border-radius: 18px !important;
+  }
+
+  .card-back h2 {
+    font-size: 2rem;
+  }
+
+  .card-back-text {
+    font-size: 1.05rem;
+    line-height: 1.5;
+  }
+
+  /* page4 */
+.page-4 {
+  height: auto !important;       /* remove 100vh lock */
+  min-height: auto;
+  padding: 3rem 1rem;
+}
+
+/* Let container grow naturally */
+.vertical-panels {
+  height: auto;
+  gap: 1.5rem;
+}
+
+/* Each row behaves like normal stacked card */
+.row {
+  flex: none;                    /* remove flex-grow behaviour */
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 1.5rem;
+  gap: 1rem;
+}
+
+/* Disable hover expansion logic on mobile */
+.row:hover {
+  flex-grow: 0;
+}
+
+/* Fix absolute text issue */
+.row-center {
+  position: relative;
+  margin-left: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Make boxes consistent */
+.row-box {
+  width: 100%;
+  max-width: 180px;
+  height: 140px;
+  align-self: center;
+}
+}
+
+/* ---------- SMALL MOBILE (≤480px) ---------- */
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .page-2 h1 {
+    font-size: 1.8rem;
+  }
+
+  .row-box {
+    height: 130px;
+    width: 130px;
+  }
+}
