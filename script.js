@@ -94,19 +94,10 @@ if (heading) {
    Page 3 – Card Split & Flip Animation
 -------------------------------------------------- */
 
-/* ==========================================
-   PAGE 3 – DESKTOP ONLY (ANIMATION UNTOUCHED)
-========================================== */
-
-/* ==========================================
-   PAGE 3 – DESKTOP ONLY (SAFE VERSION)
-========================================== */
-
-let page3Timeline; // keep reference
+let page3Timeline;
 
 ScrollTrigger.matchMedia({
 
-  /* DESKTOP */
   "(min-width: 1025px)": function () {
 
     page3Timeline = gsap.timeline({
@@ -145,12 +136,12 @@ ScrollTrigger.matchMedia({
 
   },
 
-  /* MOBILE + TABLET */
   "(max-width: 1024px)": function () {
 
-    if (page3Timeline) {
+    if (page3Timeline && page3Timeline.scrollTrigger) {
       page3Timeline.scrollTrigger.kill();
       page3Timeline.kill();
+      page3Timeline = null;
     }
 
     gsap.set(".card", { clearProps: "transform" });
@@ -158,7 +149,7 @@ ScrollTrigger.matchMedia({
 
   }
 
-});
+}); 
 
 /* --------------------------------------------------
    Card Hover Lighting (Mouse Tracking)
