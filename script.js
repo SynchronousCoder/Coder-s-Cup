@@ -227,7 +227,6 @@ let page3Timeline;
 
 ScrollTrigger.matchMedia({
 
-  // ── DESKTOP (≥1025px) — DO NOT TOUCH ──────────────
   "(min-width: 1025px)": function () {
 
     page3Timeline = gsap.timeline({
@@ -266,10 +265,8 @@ ScrollTrigger.matchMedia({
 
   },
 
-  // ── MOBILE (≤1024px) ──────────────────────────────
   "(max-width: 1024px)": function () {
 
-    // kill desktop timeline if somehow alive
     if (page3Timeline && page3Timeline.scrollTrigger) {
       page3Timeline.scrollTrigger.kill();
       page3Timeline.kill();
@@ -279,48 +276,9 @@ ScrollTrigger.matchMedia({
     gsap.set(".card", { clearProps: "transform" });
     gsap.set(".banner", { clearProps: "transform" });
 
-    // Set cards off-screen below before animation starts
-    gsap.set(".card", {
-      y: 300,
-      rotationX: 25,
-      rotationY: -15,
-      rotationZ: -8,
-      opacity: 0,
-      transformPerspective: 900,
-    });
-
-    const page3TimelineMobile = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#page-3",
-        start: "top top",
-        end: "top -180%",
-        scrub: 1.2,
-        pin: true,
-      },
-    });
-
-    page3TimelineMobile
-  .from(".page3-heading h1", {
-    y: 600,
-    opacity: 0,
-    duration: 1,
-    ease: "power2.out",
-  })
-  .fromTo("#card-1",
-    { y: 300, rotationX: 25, rotationY: -150, rotationZ: 60, opacity: 0 },
-    { y: 0,   rotationX: 0,  rotationY: 180,  rotationZ: 0,  opacity: 1, duration: 1.4, ease: "power3.out" },
-  "-=0.5")
-  .fromTo("#card-2",
-    { y: 300, rotationX: 25, rotationY: -150, rotationZ: 60, opacity: 0 },
-    { y: 0,   rotationX: 0,  rotationY: 180,  rotationZ: 0,  opacity: 1, duration: 1.4, ease: "power3.out" },
-  "-=1.1")
-  .fromTo("#card-3",
-    { y: 300, rotationX: 25, rotationY: -150, rotationZ: 60, opacity: 0 },
-    { y: 0,   rotationX: 0,  rotationY: 180,  rotationZ: 0,  opacity: 1, duration: 1.4, ease: "power3.out" },
-  "-=1.1");
   }
 
-});
+}); 
 /* --------------------------------------------------
    Card Hover Lighting (Mouse Tracking)
 -------------------------------------------------- */

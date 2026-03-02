@@ -821,7 +821,7 @@ body {
     width: 100%;
     height: 420px;
     flex: none;
-    /* transform: rotateY(180deg) !important; show back side */
+    transform: rotateY(180deg) !important; 
   }
 
   .card-front,
