@@ -3,13 +3,102 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Coder</title>
 
-    <!-- Styles -->
+    <!-- ═══ SEO: Title & Description ═══ -->
+    <title>BVCOE Coder's Cup – Coding Competition Delhi | Register Now</title>
+    <meta
+      name="description"
+      content="BVCOE Coder's Cup is Delhi's premier student coding competition. Three elimination rounds: Quiz → Codeforces → 1v1 Knockout Finals. ₹8,000 prize pool. Register free on Unstop."
+    />
+    <meta
+      name="keywords"
+      content="Coder Cup, BVCOE Coders Cup, coding competition Delhi, coding tournament college, competitive programming India, DSA competition, Codeforces contest, developer contest BVCOE"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Aryan Tyagi – BVCOE T&P Cell" />
+    <link rel="canonical" href="https://bvcoecoderscup.in/" />
+
+    <!-- ═══ Open Graph (WhatsApp / LinkedIn preview) ═══ -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bvcoecoderscup.in/" />
+    <meta
+      property="og:title"
+      content="BVCOE Coder's Cup – Coding Competition Delhi"
+    />
+    <meta
+      property="og:description"
+      content="Three-round elimination coding tournament at BVCOE, New Delhi. ₹8,000 prize pool. Register free on Unstop."
+    />
+    <meta
+      property="og:image"
+      content="https://bvcoecoderscup.in/img/og-cover.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:site_name" content="BVCOE Coder's Cup" />
+
+    <!-- ═══ Twitter Card ═══ -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="BVCOE Coder's Cup – Coding Competition Delhi"
+    />
+    <meta
+      name="twitter:description"
+      content="Three-round elimination coding tournament. ₹8,000 prize pool. Register free!"
+    />
+    <meta
+      name="twitter:image"
+      content="https://bvcoecoderscup.in/img/og-cover.jpg"
+    />
+
+    <!-- ═══ JSON-LD Structured Data (Google Rich Results) ═══ -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "BVCOE Coder's Cup",
+        "description": "Three-round elimination competitive programming tournament at Bharati Vidyapeeth's College of Engineering, New Delhi. Rounds: Quiz, Codeforces Contest, 1v1 Knockout Finals.",
+        "url": "https://bvcoecoderscup.in/",
+        "image": "https://bvcoecoderscup.in/img/og-cover.jpg",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
+        "location": {
+          "@type": "Place",
+          "name": "Bharati Vidyapeeth's College of Engineering",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "A-4, Paschim Vihar",
+            "addressLocality": "New Delhi",
+            "postalCode": "110063",
+            "addressCountry": "IN"
+          }
+        },
+        "organizer": {
+          "@type": "Organization",
+          "name": "BVCOE Training & Placement Cell",
+          "url": "https://bvcoecoderscup.in/"
+        },
+        "offers": {
+          "@type": "Offer",
+          "name": "Free Registration",
+          "price": "0",
+          "priceCurrency": "INR",
+          "url": "https://unstop.com/hackathons/the-bvcoe-coders-cup-bharati-vidyapeeths-college-of-engineering-1641901",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    </script>
+
+    <!-- ═══ Preload hero image for fast LCP ═══ -->
+    <link rel="preload" as="image" href="img/hero.png" />
+
+    <!-- ═══ Styles & Favicon ═══ -->
     <link rel="stylesheet" href="style.css" />
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="img/hero.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="img/hero.png" />
+    <link rel="apple-touch-icon" href="img/hero.png" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
   </head>
 
   <body>
@@ -44,7 +133,7 @@
         <!-- Hero Content -->
         <div class="hero-content">
           <p>THE BVCOE</p>
-          <h1>CODER’S CUP</h1>
+          <h1 id="hero-title">CODER’S CUP</h1>
           <p>A NEW WAY TO COMPETE</p>
         </div>
       </div>
@@ -208,7 +297,7 @@
 
         <!-- Center Content -->
         <div class="final-content">
-          <h1>NOT EVERYONE MAKES<br />THE FINALS</h1>
+          <h1 id="final-title">NOT EVERYONE MAKES<br />THE FINALS</h1>
           <p>But everyone gets a chance to compete.</p>
           <button
             class="final-btn"

@@ -1,3 +1,132 @@
+/* ==================================================
+   PARALLAX ROTATION – Page 1 Hero Title
+================================================== */
+
+(function () {
+  const title = document.getElementById("hero-title");
+  if (!title) return;
+
+  // Wrap in a perspective container
+  title.style.transformStyle = "preserve-3d";
+
+  let currentRX = 0, currentRY = 0;
+  let targetRX  = 0, targetRY  = 0;
+  let rafId;
+
+  const MAX_DEG = 15; // max tilt in degrees
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  function animateTitle() {
+    currentRX = lerp(currentRX, targetRX, 0.08);
+    currentRY = lerp(currentRY, targetRY, 0.08);
+
+    title.style.transform =
+      `perspective(800px) rotateX(${currentRX}deg) rotateY(${currentRY}deg)`;
+
+    if (Math.abs(currentRX - targetRX) > 0.01 ||
+        Math.abs(currentRY - targetRY) > 0.01) {
+      rafId = requestAnimationFrame(animateTitle);
+    } else {
+      cancelAnimationFrame(rafId);
+    }
+  }
+
+  function onMouseMove(e) {
+    const { clientX, clientY } = e;
+    const { innerWidth: W, innerHeight: H } = window;
+
+    // Normalize -1 … +1
+    const nx =  (clientX / W - 0.5) * 2.5;
+    const ny = -(clientY / H - 0.5) * 5; // invert Y for natural feel
+
+    targetRY =  nx * MAX_DEG;
+    targetRX =  ny * MAX_DEG * 0.6; // subtle X tilt
+
+    cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(animateTitle);
+  }
+
+  function onMouseLeave() {
+    targetRX = 0;
+    targetRY = 0;
+    cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(animateTitle);
+  }
+
+  const page1 = document.querySelector(".page-1");
+  if (page1) {
+    page1.addEventListener("mousemove", onMouseMove, { passive: true });
+    page1.addEventListener("mouseleave", onMouseLeave);
+  }
+})();
+
+
+/* ==================================================
+   PARALLAX ROTATION – Page 5 Final Title
+================================================== */
+
+(function () {
+  const finalTitle = document.getElementById("final-title");
+  if (!finalTitle) return;
+
+  finalTitle.style.transformStyle = "preserve-3d";
+
+  let currentRX = 0, currentRY = 0;
+  let targetRX  = 0, targetRY  = 0;
+  let rafId;
+
+  const MAX_DEG = 15;
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  function animateFinal() {
+    currentRX = lerp(currentRX, targetRX, 0.08);
+    currentRY = lerp(currentRY, targetRY, 0.08);
+
+    finalTitle.style.transform =
+      `perspective(800px) rotateX(${currentRX}deg) rotateY(${currentRY}deg)`;
+
+    if (Math.abs(currentRX - targetRX) > 0.01 ||
+        Math.abs(currentRY - targetRY) > 0.01) {
+      rafId = requestAnimationFrame(animateFinal);
+    } else {
+      cancelAnimationFrame(rafId);
+    }
+  }
+
+  function onMouseMove(e) {
+    const { clientX, clientY } = e;
+    const { innerWidth: W, innerHeight: H } = window;
+
+    const nx =  (clientX / W - 0.5) * 3;
+    const ny = -(clientY / H - 0.5) * 3;
+
+    targetRY =  nx * MAX_DEG;
+    targetRX =  ny * MAX_DEG * 0.6;
+
+    cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(animateFinal);
+  }
+
+  function onMouseLeave() {
+    targetRX = 0;
+    targetRY = 0;
+    cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(animateFinal);
+  }
+
+  const page5 = document.querySelector(".page-5");
+  if (page5) {
+    page5.addEventListener("mousemove", onMouseMove, { passive: true });
+    page5.addEventListener("mouseleave", onMouseLeave);
+  }
+})();
+
+
+/* ==================================================
+================================================== */
+// (paste the full existing script.js content here)
 /* --------------------------------------------------
    Lenis Smooth Scroll – Enhanced Smoothness
 -------------------------------------------------- */
@@ -98,6 +227,7 @@ let page3Timeline;
 
 ScrollTrigger.matchMedia({
 
+  // ── DESKTOP (≥1025px) — DO NOT TOUCH ──────────────
   "(min-width: 1025px)": function () {
 
     page3Timeline = gsap.timeline({
@@ -136,8 +266,10 @@ ScrollTrigger.matchMedia({
 
   },
 
+  // ── MOBILE (≤1024px) ──────────────────────────────
   "(max-width: 1024px)": function () {
 
+    // kill desktop timeline if somehow alive
     if (page3Timeline && page3Timeline.scrollTrigger) {
       page3Timeline.scrollTrigger.kill();
       page3Timeline.kill();
@@ -147,10 +279,48 @@ ScrollTrigger.matchMedia({
     gsap.set(".card", { clearProps: "transform" });
     gsap.set(".banner", { clearProps: "transform" });
 
+    // Set cards off-screen below before animation starts
+    gsap.set(".card", {
+      y: 300,
+      rotationX: 25,
+      rotationY: -15,
+      rotationZ: -8,
+      opacity: 0,
+      transformPerspective: 900,
+    });
+
+    const page3TimelineMobile = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#page-3",
+        start: "top top",
+        end: "top -180%",
+        scrub: 1.2,
+        pin: true,
+      },
+    });
+
+    page3TimelineMobile
+  .from(".page3-heading h1", {
+    y: 600,
+    opacity: 0,
+    duration: 1,
+    ease: "power2.out",
+  })
+  .fromTo("#card-1",
+    { y: 300, rotationX: 25, rotationY: -150, rotationZ: 60, opacity: 0 },
+    { y: 0,   rotationX: 0,  rotationY: 180,  rotationZ: 0,  opacity: 1, duration: 1.4, ease: "power3.out" },
+  "-=0.5")
+  .fromTo("#card-2",
+    { y: 300, rotationX: 25, rotationY: -150, rotationZ: 60, opacity: 0 },
+    { y: 0,   rotationX: 0,  rotationY: 180,  rotationZ: 0,  opacity: 1, duration: 1.4, ease: "power3.out" },
+  "-=1.1")
+  .fromTo("#card-3",
+    { y: 300, rotationX: 25, rotationY: -150, rotationZ: 60, opacity: 0 },
+    { y: 0,   rotationX: 0,  rotationY: 180,  rotationZ: 0,  opacity: 1, duration: 1.4, ease: "power3.out" },
+  "-=1.1");
   }
 
-}); 
-
+});
 /* --------------------------------------------------
    Card Hover Lighting (Mouse Tracking)
 -------------------------------------------------- */
