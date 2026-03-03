@@ -529,6 +529,14 @@ body {
   background: #c9b11f;
 }
 
+.purple img, .cyan img, .pink img, .yellow img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
 /* ==================================================
    PAGE 5 – FINAL SECTION
 ================================================== */
