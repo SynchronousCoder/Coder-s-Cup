@@ -1,0 +1,54 @@
+@font-face {
+  font-family: newsreader;
+  src: url(../font/Newsreader-VariableFont_opsz,wght.ttf);
+}
+
+@font-face {
+  font-family: font1;
+  src: url(../font/Inter-VariableFont_opsz,wght.ttf);
+}
+/* --------------------------------------------------
+    Base Reset
+    Keeps layout predictable across browsers
+    -------------------------------------------------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  color: #fff;
+  font-family: font1;
+}
+
+.page-1 {
+  height: 100vh;
+  background-color: #b55151;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+#hero-title {
+  font-family: newsreader;
+opacity: 1 !important;
+  filter: none !important;
+  font-size: clamp(3rem, 8vw, 7rem);
+  color: #fff;
+  letter-spacing: 6px;
+  text-align: center;
+
+  transform: translateY(0) scale(1.2);
+  filter: blur(10px);
+  opacity: 0;
+
+  will-change: transform;
+}

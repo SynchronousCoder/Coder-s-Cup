@@ -219,6 +219,30 @@ if (heading) {
   });
 }
 
+//button animation
+const texts = document.querySelectorAll(".text");
+
+texts.forEach(text => {
+
+  const letters = text.textContent.split("");
+  text.innerHTML = "";
+
+  letters.forEach((letter, i) => {
+
+    const span = document.createElement("span");
+
+    // preserve spaces
+    span.innerHTML = letter === " " ? "&nbsp;" : letter;
+
+    // faster stagger
+    span.style.transitionDelay = `${i * 0.0125}s`;
+
+    text.appendChild(span);
+
+  });
+
+});
+
 /* --------------------------------------------------
    Page 3 – Card Split & Flip Animation
 -------------------------------------------------- */
