@@ -221,6 +221,7 @@ body {
   background-color: white;
 }
 
+
 /* ==========================
    PAGE 2
 ========================== */
@@ -366,8 +367,49 @@ body {
   text-align: center;
   font-family: newsreader;
 }
-.page-3 h1{
-  font-size: 9rem;
-  font-weight: 900;
-  line-height: 11rem;
+/* ==========================
+   GRADIENT TEXT
+========================== */
+
+.gradient-text {
+  font-size: clamp(3rem, 8vw, 8rem);
+  font-family: newsreader;
+  text-align: center;
+  line-height: 1.1;
+
+    text-shadow:
+    0 0 20px rgba(255,60,0,0.5),
+    0 0 40px rgba(255,120,0,0.3);
+    
+  /* 🔥 gradient colors */
+  background: linear-gradient(
+    90deg,
+    #ff3c00,
+    #ff7a00,
+    #ffae00,
+    #ff3c00
+  );
+
+  background-size: 300%;
+
+  /* 🔥 apply gradient to text */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* 🔥 animation */
+  animation: gradientMove 6s linear infinite;
+}
+
+
+/* ==========================
+   ANIMATION
+========================== */
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 300%;
+  }
 }
